@@ -1,5 +1,7 @@
 import subprocess
 
+from lockfilesmith.exceptions import LockFileSmithException
+
 
 def install_git_lfs() -> bool:
     # This initialized Git LFS, not installing Git LFS binaries. Refer to
@@ -16,7 +18,6 @@ def install_git_lfs() -> bool:
         text=True,
     )
     if result.returncode:
-        print(f"Warning! Fail to install Git LFS. Error: {result.stderr}")
-        return False
+        raise LockFileSmithException(f"Fail to install Git LFS. Error: {result.stderr}")
 
     return True

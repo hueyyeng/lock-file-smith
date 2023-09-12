@@ -1,5 +1,7 @@
 import subprocess
 
+from lockfilesmith.exceptions import LockFileSmithException
+
 
 def clone(repo_url: str, new_name: str = None) -> bool:
     """Clone Git LFS repository
@@ -33,8 +35,7 @@ def clone(repo_url: str, new_name: str = None) -> bool:
         text=True,
     )
     if result.returncode:
-        print(f"Warning! Fail to clone {repo_url}. Error: {result.stderr}")
-        return False
+        raise LockFileSmithException(f"Warning! Fail to clone {repo_url}. Error: {result.stderr}")
 
     return True
 
@@ -65,8 +66,7 @@ def pull() -> bool:
         text=True,
     )
     if result.returncode:
-        print(f"Warning! Fail to pull commits/LFS files. Error: {result.stderr}")
-        return False
+        raise LockFileSmithException(f"Fail to pull commits/LFS files. Error: {result.stderr}")
 
     return True
 
@@ -91,7 +91,6 @@ def push() -> bool:
         text=True,
     )
     if result.returncode:
-        print(f"Warning! Fail to push commits/LFS files. Error: {result.stderr}")
-        return False
+        raise LockFileSmithException(f"Fail to push commits/LFS files. Error: {result.stderr}")
 
     return True

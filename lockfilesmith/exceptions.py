@@ -1,2 +1,2 @@
-class QueryException(Exception):
+class LockFileSmithException(Exception):
     pass
