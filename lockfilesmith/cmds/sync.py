@@ -49,6 +49,7 @@ def pull() -> bool:
         True if successfully pulled with or without new commits/LFS files
 
     """
+    # TODO: Probably want to replace this with `git pull`?
     # git -c filter.lfs.smudge= -c filter.lfs.required=false pull && git lfs pull
     commands = [
         "git",
