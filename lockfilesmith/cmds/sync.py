@@ -19,9 +19,9 @@ def clone(repo_url: str, new_name: str = None) -> bool:
         True if successfully cloned
 
     """
+    # Woops `git lfs clone` has been deprecated since Git v2.15.0 (late 2017)
     commands = [
         "git",
-        "lfs",
         "clone",
         repo_url,
     ]
