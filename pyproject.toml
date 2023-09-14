@@ -1,5 +1,5 @@
 [project]
-name = "Lock File Smith"
+name = "lock-file-smith"
 description = "Simple wrapper for Git LFS (Large File Storage) commands."
 readme = "README.md"
 requires-python = ">=3.8"

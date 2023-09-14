@@ -1,5 +1,7 @@
 import subprocess
 
+from lockfilesmith.exceptions import LockFileSmithException
+
 
 def lock_file(name: str) -> bool:
     """Lock File
@@ -28,8 +30,7 @@ def lock_file(name: str) -> bool:
         text=True,
     )
     if result.returncode:
-        print(f"Warning! Error locking file {name}", result.stderr)
-        return False
+        raise LockFileSmithException(f"Error locking file {name}", result.stderr)
 
     return True
 
@@ -62,8 +63,7 @@ def unlock_file(lock_id: int) -> bool:
         text=True,
     )
     if result.returncode:
-        print(f"Warning! Error unlocking file ID {lock_id}", result.stderr)
-        return False
+        raise LockFileSmithException(f"Error unlocking file ID {lock_id}", result.stderr)
 
     return True
 

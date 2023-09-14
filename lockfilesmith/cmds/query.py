@@ -1,7 +1,7 @@
 import subprocess
 from typing import List
 
-from lockfilesmith.exceptions import QueryException
+from lockfilesmith.exceptions import LockFileSmithException
 from lockfilesmith.models import LockFile
 
 
@@ -48,7 +48,7 @@ def locked_files() -> List[LockFile]:
         text=True,
     )
     if result.returncode:
-        raise QueryException(f"Fail to query locked files. Error: {result.stderr}")
+        raise LockFileSmithException(f"Fail to query locked files. Error: {result.stderr}")
 
     if not result.stdout:
         return []
